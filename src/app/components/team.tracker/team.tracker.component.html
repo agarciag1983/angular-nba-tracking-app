@@ -1,0 +1,12 @@
+<div class="d-flex flex-column h-100">
+    <div class="row col-xs-12 py-2">
+        <div class="col-xs-12 col-lg-4 col-md-6">
+            <nba-team-selector [teams$]="teams$" (onSelected)="onSelectedTeam($event)"></nba-team-selector>
+        </div>        
+    </div>
+    <div class="row col-xs-12">
+        <div class="col-md-6 col-lg-4 col-xs-12 pb-3" *ngFor="let team of trackedTeams$ | async">
+            <nba-team-detail [team]="team" (onRemove)="onRemovedTeam($event)"></nba-team-detail>
+        </div>
+    </div>
+</div>

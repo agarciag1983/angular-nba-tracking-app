@@ -1,0 +1,11 @@
+<div class="row col-xs-12">
+    <form [formGroup]="teamFormGroup" (ngSubmit)="onSubmit()">
+        <div class="form-floating input-group mb-3">
+            <select id="teamInput" formControlName="teamSelect" name="team-list" class="form-select">
+                <option *ngFor="let team of teams$ | async" [value]="team.id">{{team.full_name}}</option>
+            </select>
+            <label for="team-list">Team:</label>
+            <button id="trackBtn" class="btn btn-primary" type="submit" [disabled]="!teams$ || !teamFormGroup.valid">Track team</button>
+        </div>
+    </form>
+</div>

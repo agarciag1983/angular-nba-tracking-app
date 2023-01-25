@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { IEnvironment } from './model/environment';
+import { ENVIRONMENT_TOKEN } from './app.provider';
 
 @Component({
   selector: 'nba-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'nba-score-tracking';
+  title: string = 'nba-score-tracking';
+  currentDate: Date = new Date();
+
+  constructor(@Inject(ENVIRONMENT_TOKEN) environment: IEnvironment) {
+    this.title = environment.applicationTitle;
+  }
 }
