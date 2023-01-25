@@ -1,0 +1,32 @@
+name: CD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.12.0]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install and Build
+        working-directory: ./angular-nba-tracking-app
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy
+        with:
+          branch: deploy
+          folder: angular-nba-tracking-app/nba-tracking-app
